@@ -1,4 +1,4 @@
-//gcc -m32 -fno-stack-protector vuln2.c -o vuln2
+//gcc -m32 -fno-stack-protector -no-pie vuln.c -o vuln
 
 #include <string.h>
 

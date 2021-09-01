@@ -3,40 +3,58 @@
 #include <string.h>
 #include <unistd.h>
 
-
-void overflow (char* inbuf, char* argsInput)
+void execWhoami ()
 {
-  char buf[4];
-  char str1[] = "A";
+  
   int ret=0;
-  strcpy(buf, inbuf);
-  printf("Inputs + argument:  %s %s \n",inbuf, argsInput);
-  if (strcmp(str1,inbuf)==0){
-    char *binaryPath = "/usr/bin/ls";
-    char *args[] = {binaryPath, argsInput, NULL};
-    printf("I am option A\n");
-    printf("I will execute...ls -l");
-    ret=execv(binaryPath,args);
-    printf("done");
-  }  
-  else {
-  printf("invalid option!!!! Please Enter using capitals\n");
-  }
+  char *binaryPath = "/usr/bin/whoami";
+  char *args[] = {binaryPath, NULL};
+  printf("I am option A\n");
+  printf("I will execute...whoami");
+  ret=execv(binaryPath,args);
+  printf("done");
   return;
 }
+
+void execNmap (char* argsInput1, char* argsInput2)
+{
+  
+  int ret=0;
+  char *binaryPath = "/usr/bin/nmap";
+  char *args[] = {binaryPath, "-sS", "-p", argsInput1, argsInput2, NULL};
+  printf("I am option A\n");
+  printf("I will execute...nmap");
+  ret=execv(binaryPath,args);
+  printf("done");
+  return;
+}
+
 
 
 int main (void)
 {
   char strInput[64];
   char strInput2[64];
+  char optionA[64] = "A", optionB[64] = "B", optionQ[64] = "Q";
+  char buf[4];
   
-  printf("Enter option between A-B\n");
-  scanf("%s %s", strInput, strInput2);
-  printf("You entered: %s %s\n",strInput, strInput2);
-  overflow(strInput, strInput2);
+  printf("Enter option between A-C\n");
+  scanf("%s", strInput);
+  printf("You entered: %s\n",strInput);
+  strcpy(buf, strInput);
+  if (strcmp(buf, optionA)==0){
+  execWhoami();
+  }
+  if (strcmp(buf, optionB)==0){
+  printf("Please enter a port number!!\n");
+  scanf("%s", strInput);
+  printf("Please enter an IP address!!\n");
+  scanf("%s", strInput2);
+  execNmap(strInput, strInput2);
+  }
+  else {
+    printf("invalid option!!!! Please Enter using capitals\n");
+  }
   
-  
-
   return 0;
 }

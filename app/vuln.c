@@ -9,10 +9,9 @@ void execWhoami ()
   int ret=0;
   char *binaryPath = "/usr/bin/whoami";
   char *args[] = {binaryPath, NULL};
-  printf("I am option A\n");
-  printf("I will execute...whoami");
-  ret=execv(binaryPath,args);
-  printf("done");
+  printf("I will execute...whoami\n");
+  printf("\n");
+  ret=execv(binaryPath,args);  
   return;
 }
 
@@ -21,11 +20,10 @@ void execNmap (char* argsInput1, char* argsInput2)
   
   int ret=0;
   char *binaryPath = "/usr/bin/nmap";
-  char *args[] = {binaryPath, "-sS", "-p", argsInput1, argsInput2, NULL};
+  char *args[] = {binaryPath, "-sS", "-p", argsInput1, argsInput2, "-T5",NULL};
   printf("I am option A\n");
-  printf("I will execute...nmap");
+  printf("I will execute...nmap\n");
   ret=execv(binaryPath,args);
-  printf("done");
   return;
 }
 
@@ -38,7 +36,27 @@ int main (void)
   char optionA[64] = "A", optionB[64] = "B", optionQ[64] = "Q";
   char buf[4];
   
-  printf("Enter option between A-C\n");
+   printf(R"EOF(
+||====================================================================||
+||//$\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//$\\||
+||(100)==================|    DAMN VULNERABLE   |================(100)||
+||\\$//                  '------========--------'                \\$//||
+||<<|                                                              |>>||
+||>>|								   |<<||
+||<<|       █▀▄▀█ ▄▀█ █▄▀ █▀▀   █ ▀█▀   █▀█ ▄▀█ █ █▄░█	    |>>||
+||>>|       █░▀░█ █▀█ █░█ ██▄   █ ░█░   █▀▄ █▀█ █ █░▀█      |<<||
+||<<|								   |>>||
+||>>|			       __________                          |<<||
+||<<\      $$$$$$$$$     _____/          \________    $$$$$$$$$    />>||
+||//$\                 ~|       ZEIT 8042        |~               /$\\||
+||(100)===================     PASS 4 SURE      =================(100)||
+||\\$//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\$//||
+||====================================================================||
+)EOF");
+  printf("Select option to run as root: \n");
+  printf("[A] Run Whoami\n");
+  printf("[B] Run nmap\n");
+  printf("[Q] Quit \n");
   scanf("%s", strInput);
   printf("You entered: %s\n",strInput);
   strcpy(buf, strInput);
@@ -52,9 +70,13 @@ int main (void)
   scanf("%s", strInput2);
   execNmap(strInput, strInput2);
   }
+  if (strcmp(buf, optionQ)==0){
+  printf("Okay.....exiting....\n");
+  }
   else {
     printf("invalid option!!!! Please Enter using capitals\n");
   }
+  printf("done....\n");
   
   return 0;
 }

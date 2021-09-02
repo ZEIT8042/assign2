@@ -30,8 +30,9 @@ void execNmap (char* argsInput1, char* argsInput2)
 
 void helpCommand (char* inputArgs)
 {
+  char buf[4];
   printf("I will execute...DOOM!!!!!!!%s\n", inputArgs);
-  exit(0);
+  strcpy(buf, inputArgs);
 }
 
 
@@ -41,15 +42,15 @@ int main (int argc, char** argv)
   char strInput[64];
   char strInput2[64];
   char optionA[64] = "A", optionB[64] = "B", optionQ[64] = "Q", help[16] = "h";
-  char buf[64];
   
-  if (argv[1]){
-  strcpy(buf, argv[1]);
+  
+  if (argc > 1){
+  
+  printf("I am True");
+  helpCommand(argv[1]);
   }
-
-  if (strcmp(buf, help)==0){
-  printf("gotHIM!!!!");
-  helpCommand(buf);
+  else{
+  printf("NOT TRUE");
   }
 
   

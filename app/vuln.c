@@ -31,8 +31,8 @@ void execNmap (char* argsInput1, char* argsInput2)
 void helpCommand (char* inputArgs)
 {
   char buf[4];
-  printf("I will execute...DOOM!!!!!!!%s\n", inputArgs);
   strcpy(buf, inputArgs);
+  printf("I will execute...DOOM!!!!!!!%s\n", inputArgs);
 }
 
 

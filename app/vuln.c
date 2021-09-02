@@ -1,7 +1,8 @@
-//gcc -m32 -fno-stack-protector vuln.c -o vuln
+//gcc -m32 -fno-stack-protector -no-pie vuln.c -o vuln
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 void execWhoami ()
 {
@@ -27,14 +28,30 @@ void execNmap (char* argsInput1, char* argsInput2)
   return;
 }
 
+void helpCommand (char* inputArgs)
+{
+  printf("I will execute...DOOM!!!!!!!%s\n", inputArgs);
+  exit(0);
+}
 
 
-int main (void)
+
+int main (int argc, char** argv)
 {
   char strInput[64];
   char strInput2[64];
-  char optionA[64] = "A", optionB[64] = "B", optionQ[64] = "Q";
-  char buf[4];
+  char optionA[64] = "A", optionB[64] = "B", optionQ[64] = "Q", help[16] = "h";
+  char buf[64];
+  
+  if (argv[1]){
+  strcpy(buf, argv[1]);
+  }
+
+  if (strcmp(buf, help)==0){
+  printf("gotHIM!!!!");
+  helpCommand(buf);
+  }
+
   
    printf(R"EOF(
 ||====================================================================||
@@ -59,18 +76,19 @@ int main (void)
   printf("[Q] Quit \n");
   scanf("%s", strInput);
   printf("You entered: %s\n",strInput);
-  strcpy(buf, strInput);
-  if (strcmp(buf, optionA)==0){
+  
+  
+  if (strcmp(strInput, optionA)==0){
   execWhoami();
   }
-  if (strcmp(buf, optionB)==0){
+  if (strcmp(strInput, optionB)==0){
   printf("Please enter a port number!!\n");
   scanf("%s", strInput);
   printf("Please enter an IP address!!\n");
   scanf("%s", strInput2);
   execNmap(strInput, strInput2);
   }
-  if (strcmp(buf, optionQ)==0){
+  if (strcmp(strInput, optionQ)==0){
   printf("Okay.....exiting....\n");
   }
   else {

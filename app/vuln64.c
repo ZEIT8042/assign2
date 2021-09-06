@@ -50,7 +50,7 @@ int main (int argc, char** argv)
   helpCommand(argv[1]);
   }
   else{
-  printf("No arguments entered\n");
+  printf("For help use: ./vuln64 h \n");
   }
 
   

@@ -3,7 +3,7 @@ Welcome!!!
 
 This a vulnerable application written in 'c.'
 
-In this tutorial I will show you how to bypass these two security controls on a linux operating system:
+In this tutorial I will show you how to bypass these two security controls on a linux operating system using the return-to-libc attack:
 - NX: non-executable stack
 - ASLR: Address Space Layout Randomization
 

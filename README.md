@@ -50,8 +50,9 @@ xsel -cb    #to clear clip-board
 ```sh
 sudo apt-get install git
 ```
-```sh
+
 In your target directory:
+```sh
 git clone https://github.com/ZEIT8042/assign2.git
 ```
 ### Compile vulnerable program
@@ -66,7 +67,9 @@ sudo chmod u+s vuln64
 ```
 
 ## Execution
-<link to video>
+
+[See here for a video demonstration of the walkthrough](https://unsw-my.sharepoint.com/:v:/g/personal/z5332187_ad_unsw_edu_au/EaEiUkzgTYJEn1G7LY-x2QIBVWzUD1xK5wFEphhhcw3iXw?e=sZJcY7)
+
 This program is sucseptible to a Buffer overflow (BoF) attack when the helpCommand() c function is called after the "Enter to continue...." prompt which allows user input to be placed direclty into into the buffer[] using the gets(buffer) command. The gets() function does not perform any bounds checking which allows for the stack to be overwritten. 
 
 Security Controls bypass include non-executable stack (NX) and Address space layout randomization (ASLR). The NX-bit is a security control implemented  on modern CPU architectures used to mark certain areas of stack memory as "non-exectable" and is a common feature which mitigates attackers from placing malicious shellcode within a program's memory and executing. ASLR further enhances BoF protection by randomizing the address space of stack positions within the executable and libraries which makes attacks against the program less reliable.
